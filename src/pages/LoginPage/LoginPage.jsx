@@ -73,7 +73,7 @@ export default function LoginPage(){
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
             <Email placeholder="email" />
             <Senha placeholder="senha" />
-            <Entrar>Entrar</Entrar>
+            <Link to="/habitos"><Entrar>Entrar</Entrar></Link>
             <Link to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>
     )
