@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useState } from "react";
 
 
 const PageContainer = styled.div`
@@ -70,14 +71,24 @@ const Cadastro = styled.p`
     text-decoration: underline;
 `;
 
-export default function LoginPage(){
+export default function LoginPage(email, setEmail, senha, setSenha, muda){
+
+    function click(){
+        console.log(email);
+        console.log(senha);
+    }
+
+    
+
+    //<Link to="/habitos"><Entrar onClick={click()} datatest="login-btn">Entrar</Entrar></Link>
+
     return(
         <PageContainer>
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
-            <Email type={"email"} placeholder="email" />
-            <Senha type={'password'} placeholder="senha" />
-            <Link to="/habitos"><Entrar>Entrar</Entrar></Link>
-            <Link to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
+            <Email data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
+            <Senha data-test="password-input" type={'password'} placeholder="senha" onChange={muda} />
+            <Link to="/habitos"><Entrar onClick={click} datatest="login-btn">Entrar</Entrar></Link>
+            <Link data-test="signup-link" to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>
     )
 }
