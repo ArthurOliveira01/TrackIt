@@ -71,8 +71,8 @@ export default function LoginPage(){
     return(
         <PageContainer>
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
-            <Email placeholder="email" />
-            <Senha placeholder="senha" />
+            <Email type={"email"} placeholder="email" />
+            <Senha type={'password'} placeholder="senha" />
             <Link to="/habitos"><Entrar>Entrar</Entrar></Link>
             <Link to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -8,7 +7,7 @@ const Row = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 `;
 
 const Mine = styled.p`
@@ -16,6 +15,7 @@ const Mine = styled.p`
     font-size: 23px;
     color: #126BA5;
     margin-top: 98px;
+    margin-left: 4.533333333%;
 `;
 
 const Create = styled.button`
@@ -26,7 +26,9 @@ const Create = styled.button`
     width: 40px;
     height: 35px;
     background-color: #52B6FF;
-    margin-left: 40.53333333%;
+    //margin-left: 40.53333333%;
+    margin-left: auto;
+    margin-right: 4.533333333%;
     border-color: #52B6FF;
     border-width: 0px;
     border-radius: 4.63636px;
@@ -42,7 +44,6 @@ const HabitsContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    background-color: #E5E5E5;
 `;
 
 const None = styled.p`
@@ -50,7 +51,6 @@ const None = styled.p`
     font-size: 18px;
     font-family: 'Lexend Deca';
     color: #666666;
-
 `;
 
 const Container = styled.div`
@@ -59,6 +59,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #E5E5E5;
+    padding-bottom: 70px;
 `;
 
 

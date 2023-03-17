@@ -26,7 +26,8 @@ const Profile = styled.img`
     width: 51px;
     height:51px;
     margin-top: 9px;
-    margin-left: 57.5%;
+    margin-left: auto;
+    margin-right: 4.8%;
     border-radius: 98.5px;
 `;
 
