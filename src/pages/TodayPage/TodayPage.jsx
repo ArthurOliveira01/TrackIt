@@ -3,6 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function TodayPage(){
     return(
-        <p></p>
+        <p>te</p>
     )
 }
