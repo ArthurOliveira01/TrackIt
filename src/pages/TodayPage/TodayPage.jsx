@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-
+import { IoMdCheckmark } from 'react-icons/io';
+import { Icon } from 'react-icons';
 
 const Container = styled.div`
     width: 100%;
@@ -113,11 +114,9 @@ const Check1 = styled.button`
     border-radius: 5px;
 `;
 
-const Mark = styled.i`
-    &.ion-checkmark-outline{
-        font-size: 2rem;
-        color: #ffffff;
-    }
+const Mark = styled(IoMdCheckmark)`
+    color: #FFFFFF;
+    font-weight: 700;
 `;
 
 export default function TodayPage(){
@@ -134,7 +133,7 @@ export default function TodayPage(){
                         <Record>Seu recorde: <CheckStreak>4 dias</CheckStreak></Record>
                     </Left>
                     <Right>
-                        <Check><Mark className="ion-checkmark-outline" /></Check>
+                        <Check><Mark size={35} /></Check>
                     </Right>
                 </Habits>
                 <Habits>
@@ -144,7 +143,7 @@ export default function TodayPage(){
                         <Record>Seu recorde: 10 dias</Record>
                     </Left>
                     <Right>
-                        <Check1 />
+                        <Check1><Mark size={35} /></Check1>
                     </Right>
                 </Habits>
             </HabitsContainer>

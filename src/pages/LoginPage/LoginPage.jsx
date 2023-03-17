@@ -57,6 +57,9 @@ const Entrar = styled.button`
     background-color: #52B6FF;
     color: #FFFFFF;
     font-size: 21px;
+    &:hover{
+        cursor:pointer;
+    }
 `;
 
 const Cadastro = styled.p`
