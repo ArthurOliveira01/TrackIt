@@ -61,9 +61,14 @@ const Entrar = styled.button`
     background-color: #52B6FF;
     color: #FFFFFF;
     font-size: 21px;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
     &:hover{
         cursor:pointer;
     }
+    text-decoration: none;
 `;
 
 const Cadastro = styled.p`
