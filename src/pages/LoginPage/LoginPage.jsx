@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
-import { TailSpin } from 'react-loader-spinner';
+import { ThreeDots } from 'react-loader-spinner';
 
 
 
@@ -126,8 +126,8 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
             <Logo onClick={test} src={"https://i.ibb.co/DKjLYX1/logo.png"} />
             <Email required disabled={loading} data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
             <Senha required disabled={loading} data-test="password-input" type={'password'} placeholder="senha" onChange={muda1} />
-            <Link data-test="login-btn" to="/hoje"><Entrar onClick={login} disabled={loading} datatest="login-btn">{loading && (
-                <TailSpin color="#FFFFFF" />
+            <Link disabled={loading} data-test="login-btn" to="/hoje"><Entrar onClick={login} disabled={loading} datatest="login-btn">{loading && (
+                <ThreeDots width={40} height={40} color="#FFFFFF" />
             ) || (
                 'Entrar'
             )}</Entrar></Link>
