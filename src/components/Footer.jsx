@@ -46,9 +46,9 @@ export default function Footer(){
     // <Link to="/hoje"><Circle>Hoje</Circle></Link>
 
     return(
-        <Bottom>
-            <StyledLink1 to="/habitos">Hábitos</StyledLink1>
-            <StyledLinkToday to="/hoje"><CircularProgressbarWithChildren
+        <Bottom data-test="menu">
+            <StyledLink1 data-test="habit-link" to="/habitos">Hábitos</StyledLink1>
+            <StyledLinkToday data-test="today-link" to="/hoje"><CircularProgressbarWithChildren
             background backgroundPadding={6} styles={buildStyles({
             backgroundColor: "#52B6FF",
             textColor: "#fff",
@@ -57,7 +57,7 @@ export default function Footer(){
             value={50} 
             text={'Hoje'}>
             </CircularProgressbarWithChildren></StyledLinkToday>
-            <StyledLink2 to="/historico">Histórico</StyledLink2>
+            <StyledLink2 data-test="history-link" to="/historico">Histórico</StyledLink2>
         </Bottom>
     )
 }
