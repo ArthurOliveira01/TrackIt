@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
+
 
 
 const PageContainer = styled.div`
@@ -102,7 +104,7 @@ const Login = styled.p`
 
 
 export default function SetUpPage({setEmail, setSenha, setImg, setNome, nome, email, senha, img}){
-    
+    const navigate = useNavigate();
 
     function muda(event){
         setEmail(event.target.value);
@@ -127,6 +129,14 @@ export default function SetUpPage({setEmail, setSenha, setImg, setNome, nome, em
         console.log(nome);
     }
 
+    function signup(event){
+        event.preventDefault();
+        const send = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", {email: email, password: senha, image: img, name: nome});
+        console.log(send);
+        send.then(() => navigate("/"));
+        send.catch(send.response);
+    }
+
     return(
         <PageContainer>
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
@@ -134,7 +144,7 @@ export default function SetUpPage({setEmail, setSenha, setImg, setNome, nome, em
             <Senha type={'password'} data-test="password-input" placeholder="senha" onChange={muda1} />
             <Nome type={"text"} data-test="user-name-input" placeholder="nome" onChange={muda2} />
             <Pic type={"url"} data-test="user-image-input" placeholder="foto" onChange={muda3} />
-            <Link to="/"><Cadastrar onClick={clique} data-test="signup-btn">Cadastrar</Cadastrar></Link>
+            <Link to="/"><Cadastrar onClick={signup} data-test="signup-btn">Cadastrar</Cadastrar></Link>
             <Link to="/"><Login data-test="login-link">Já tem uma conta? Faça login!</Login></Link>
         </PageContainer>
     )

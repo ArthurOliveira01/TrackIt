@@ -114,7 +114,7 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
             <Logo onClick={test} src={"https://i.ibb.co/DKjLYX1/logo.png"} />
             <Email required disabled={loading} data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
             <Senha required disabled={loading} data-test="password-input" type={'password'} placeholder="senha" onChange={muda1} />
-            <Link to="/habitos"><Entrar onClick={login} datatest="login-btn">Entrar</Entrar></Link>
+            <Link data-test="login-btn" to="/habitos"><Entrar onClick={login} datatest="login-btn">Entrar</Entrar></Link>
             <Link data-test="signup-link" to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>
     )
