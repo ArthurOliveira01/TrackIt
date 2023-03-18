@@ -11,15 +11,9 @@ export default function App(){
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [img, setImg] = useState("");
 
-  function muda(event){
-    setEmail(event.target.value);
-  }
-
-  function muda1(event){
-    setSenha(event.target.value);
-  }
-
+ 
   return(
     <>
       <BrowserRouter>
@@ -29,13 +23,20 @@ export default function App(){
           setEmail = {setEmail}
           senha = {senha}
           setSenha = {setSenha}
-          muda = {muda}
-          muda1 = {muda1}
           />} />
-          <Route path="/cadastro" element={<SetUpPage />} />
-          <Route path="/habitos" element={<HabitsPage />} />
-          <Route path="/hoje" element={<TodayPage />} />
-          <Route path="/historico" element={<HistoryPage />} />
+          <Route path="/cadastro" element={<SetUpPage
+          setEmail={setEmail}
+          setSenha = {setSenha}
+          />} />
+          <Route path="/habitos" element={<HabitsPage
+          img = {img}
+          />} />
+          <Route path="/hoje" element={<TodayPage
+          img = {img}
+          />} />
+          <Route path="/historico" element={<HistoryPage
+          img = {img}
+          />} />
         </Routes>
       </BrowserRouter>
     </>

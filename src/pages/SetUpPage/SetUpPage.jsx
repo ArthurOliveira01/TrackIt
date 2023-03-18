@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -100,16 +101,19 @@ const Login = styled.p`
 `;
 
 
-export default function SetUpPage(){
+export default function SetUpPage({setEmail, setSenha}){
+    const [nome, setNome] = useState("");
+
+
     return(
         <PageContainer>
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
-            <Email placeholder="email" />
-            <Senha placeholder="senha" />
-            <Nome placeholder="nome" />
-            <Pic placeholder="foto" />
-            <Link to="/"><Cadastrar>Cadastrar</Cadastrar></Link>
-            <Link to="/"><Login>Já tem uma conta? Faça login!</Login></Link>
+            <Email data-test="email-input" placeholder="email" />
+            <Senha data-test="password-input" placeholder="senha" />
+            <Nome data-test="user-name-input" placeholder="nome" />
+            <Pic data-test="user-image-input" placeholder="foto" />
+            <Link to="/"><Cadastrar data-test="signup-btn">Cadastrar</Cadastrar></Link>
+            <Link to="/"><Login data-test="login-link">Já tem uma conta? Faça login!</Login></Link>
         </PageContainer>
     )
 }

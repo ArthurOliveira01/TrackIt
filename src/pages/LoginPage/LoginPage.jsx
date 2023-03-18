@@ -71,11 +71,19 @@ const Cadastro = styled.p`
     text-decoration: underline;
 `;
 
-export default function LoginPage(email, setEmail, senha, setSenha, muda){
+export default function LoginPage({email, setEmail, senha, setSenha}){
 
     function click(){
         console.log(email);
         console.log(senha);
+    }
+
+    function muda(event){
+        setEmail(event.target.value);
+    }
+    
+      function muda1(event){
+        setSenha(event.target.value);
     }
 
     
@@ -86,7 +94,7 @@ export default function LoginPage(email, setEmail, senha, setSenha, muda){
         <PageContainer>
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
             <Email data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
-            <Senha data-test="password-input" type={'password'} placeholder="senha" onChange={muda} />
+            <Senha data-test="password-input" type={'password'} placeholder="senha" onChange={muda1} />
             <Link to="/habitos"><Entrar onClick={click} datatest="login-btn">Entrar</Entrar></Link>
             <Link data-test="signup-link" to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>
