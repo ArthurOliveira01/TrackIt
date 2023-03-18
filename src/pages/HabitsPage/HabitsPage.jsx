@@ -55,7 +55,7 @@ const None = styled.p`
 
 const Container = styled.div`
     width: 100%;
-    height: 1500px;
+    height: 1000px;
     display: flex;
     flex-direction: column;
     background-color: #E5E5E5;

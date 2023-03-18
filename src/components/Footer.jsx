@@ -54,7 +54,7 @@ export default function Footer(){
             textColor: "#fff",
             pathColor: "#fff",
             trailColor: "transparent"})} 
-            value={0} 
+            value={50} 
             text={'Hoje'}>
             </CircularProgressbarWithChildren></StyledLinkToday>
             <StyledLink2 data-test="history-link" to="/historico">Histórico</StyledLink2>

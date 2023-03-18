@@ -92,13 +92,18 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
     }
 
     function test(){
-        setLoading(true);
+        setLoading(false);
         console.log(email);
         console.log(senha);
     }
 
     function login(event){
         event.preventDefault();
+        if(loading == true){
+            setLoading(false);
+        } else{
+            setLoading(true);
+        }
         const send = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {email: email, password: senha});
         console.log(send);
         send.then(() => navigate("/hoje"));
@@ -114,7 +119,7 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
             <Logo onClick={test} src={"https://i.ibb.co/DKjLYX1/logo.png"} />
             <Email required disabled={loading} data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
             <Senha required disabled={loading} data-test="password-input" type={'password'} placeholder="senha" onChange={muda1} />
-            <Link data-test="login-btn" to="/hoje"><Entrar onClick={login} datatest="login-btn">Entrar</Entrar></Link>
+            <Link data-test="login-btn" to="/hoje"><Entrar onClick={login} disabled={loading} datatest="login-btn">Entrar</Entrar></Link>
             <Link data-test="signup-link" to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>
     )
