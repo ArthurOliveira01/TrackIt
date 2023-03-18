@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { ThreeDots } from 'react-loader-spinner';
 
 
 
@@ -92,6 +93,10 @@ const Cadastrar = styled.button`
     background-color: #52B6FF;
     color: #FFFFFF;
     font-size: 21px;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Login = styled.p`
@@ -104,6 +109,7 @@ const Login = styled.p`
 
 
 export default function SetUpPage({setEmail, setSenha, setImg, setNome, nome, email, senha, img}){
+    const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
 
     function muda(event){
@@ -131,20 +137,35 @@ export default function SetUpPage({setEmail, setSenha, setImg, setNome, nome, em
 
     function signup(event){
         event.preventDefault();
+        if(loader == true){
+            setLoader(false);
+        } else{
+            setLoader(true);
+        }
         const send = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", {email: email, password: senha, image: img, name: nome});
         console.log(send);
         send.then(() => navigate("/"));
-        send.catch(send.response);
+        send.catch(error);
     }
+
+    function error(){
+        alert('Não foi possível cadastrar, tente novamente!');
+        setLoader(false);
+    }
+
 
     return(
         <PageContainer>
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
-            <Email type={'emai'} data-test="email-input" placeholder="email" onChange={muda} />
-            <Senha type={'password'} data-test="password-input" placeholder="senha" onChange={muda1} />
-            <Nome type={"text"} data-test="user-name-input" placeholder="nome" onChange={muda2} />
-            <Pic type={"url"} data-test="user-image-input" placeholder="foto" onChange={muda3} />
-            <Link to="/"><Cadastrar onClick={signup} data-test="signup-btn">Cadastrar</Cadastrar></Link>
+            <Email required disabled={loader} type={'emai'} data-test="email-input" placeholder="email" onChange={muda} />
+            <Senha required disabled={loader} type={'password'} data-test="password-input" placeholder="senha" onChange={muda1} />
+            <Nome required disabled={loader} type={"text"} data-test="user-name-input" placeholder="nome" onChange={muda2} />
+            <Pic required disabled={loader} type={"url"} data-test="user-image-input" placeholder="foto" onChange={muda3} />
+            <Link data-test="signup-btn" disabled={loader} to="/"><Cadastrar onClick={signup} data-test="signup-btn">{loader && (
+                <ThreeDots width={40} height={40} color="#FFFFFF" />
+            ) || (
+                'Cadastrar'
+            )}</Cadastrar></Link>
             <Link to="/"><Login data-test="login-link">Já tem uma conta? Faça login!</Login></Link>
         </PageContainer>
     )
