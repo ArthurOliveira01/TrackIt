@@ -101,18 +101,40 @@ const Login = styled.p`
 `;
 
 
-export default function SetUpPage({setEmail, setSenha}){
-    const [nome, setNome] = useState("");
+export default function SetUpPage({setEmail, setSenha, setImg, setNome, nome, email, senha, img}){
+    
 
+    function muda(event){
+        setEmail(event.target.value);
+    }
+
+    function muda1(event){
+        setSenha(event.target.value);
+    }
+
+    function muda2(event){
+        setNome(event.target.value);
+    }
+
+    function muda3(event){
+        setImg(event.target.value);
+    }
+
+    function clique(){
+        console.log(email);
+        console.log(senha);
+        console.log(img);
+        console.log(nome);
+    }
 
     return(
         <PageContainer>
             <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
-            <Email data-test="email-input" placeholder="email" />
-            <Senha data-test="password-input" placeholder="senha" />
-            <Nome data-test="user-name-input" placeholder="nome" />
-            <Pic data-test="user-image-input" placeholder="foto" />
-            <Link to="/"><Cadastrar data-test="signup-btn">Cadastrar</Cadastrar></Link>
+            <Email type={'emai'} data-test="email-input" placeholder="email" onChange={muda} />
+            <Senha type={'password'} data-test="password-input" placeholder="senha" onChange={muda1} />
+            <Nome type={"text"} data-test="user-name-input" placeholder="nome" onChange={muda2} />
+            <Pic type={"url"} data-test="user-image-input" placeholder="foto" onChange={muda3} />
+            <Link to="/"><Cadastrar onClick={clique} data-test="signup-btn">Cadastrar</Cadastrar></Link>
             <Link to="/"><Login data-test="login-link">Já tem uma conta? Faça login!</Login></Link>
         </PageContainer>
     )

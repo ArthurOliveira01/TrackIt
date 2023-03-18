@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
+import axios from "axios";
 
 
 const PageContainer = styled.div`
@@ -72,18 +73,36 @@ const Cadastro = styled.p`
 `;
 
 export default function LoginPage({email, setEmail, senha, setSenha}){
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    function click(){
-        console.log(email);
-        console.log(senha);
-    }
+
+
+//    function click(){
+//        console.log(email);
+//        console.log(senha);
+//    }
 
     function muda(event){
         setEmail(event.target.value);
     }
     
-      function muda1(event){
+    function muda1(event){
         setSenha(event.target.value);
+    }
+
+    function test(){
+        setLoading(true);
+        console.log(email);
+        console.log(senha);
+    }
+
+    function login(event){
+        event.preventDefault();
+        const send = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {email: email, password: senha});
+        console.log(send);
+        send.then(() => navigate("/habitos"));
+        send.catch(send.response);
     }
 
     
@@ -92,10 +111,10 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
 
     return(
         <PageContainer>
-            <Logo src={"https://i.ibb.co/DKjLYX1/logo.png"} />
-            <Email data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
-            <Senha data-test="password-input" type={'password'} placeholder="senha" onChange={muda1} />
-            <Link to="/habitos"><Entrar onClick={click} datatest="login-btn">Entrar</Entrar></Link>
+            <Logo onClick={test} src={"https://i.ibb.co/DKjLYX1/logo.png"} />
+            <Email required disabled={loading} data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
+            <Senha required disabled={loading} data-test="password-input" type={'password'} placeholder="senha" onChange={muda1} />
+            <Link to="/habitos"><Entrar onClick={login} datatest="login-btn">Entrar</Entrar></Link>
             <Link data-test="signup-link" to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>
     )

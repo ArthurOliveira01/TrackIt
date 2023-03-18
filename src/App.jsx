@@ -12,6 +12,7 @@ export default function App(){
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [img, setImg] = useState("");
+  const [nome, setNome] = useState("");
 
  
   return(
@@ -27,6 +28,12 @@ export default function App(){
           <Route path="/cadastro" element={<SetUpPage
           setEmail={setEmail}
           setSenha = {setSenha}
+          setImg = {setImg}
+          setNome = {setNome}
+          email = {email}
+          senha = {senha}
+          img = {img}
+          nome = {nome}
           />} />
           <Route path="/habitos" element={<HabitsPage
           img = {img}
