@@ -32,7 +32,7 @@ const Profile = styled.img`
 `;
 
 
-export default function Header(){
+export default function Header(img){
     const link = "https://mir-s3-cdn-cf.behance.net/projects/404/fa1a1e115357173.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png";
     return(
         <Topo data-test="header">

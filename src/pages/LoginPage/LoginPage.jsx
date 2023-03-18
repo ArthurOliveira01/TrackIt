@@ -2,6 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
+import { TailSpin } from 'react-loader-spinner';
+
 
 
 const PageContainer = styled.div`
@@ -107,7 +109,12 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
         const send = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {email: email, password: senha});
         console.log(send);
         send.then(() => navigate("/hoje"));
-        send.catch(send.response);
+        send.catch(error);
+    }
+
+    function error(){
+        alert('Não foi encontrado um usuário com esses dados');
+        setLoading(false);
     }
 
     
@@ -119,7 +126,11 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
             <Logo onClick={test} src={"https://i.ibb.co/DKjLYX1/logo.png"} />
             <Email required disabled={loading} data-test="email-input" type={"email"} placeholder="email" onChange={muda} />
             <Senha required disabled={loading} data-test="password-input" type={'password'} placeholder="senha" onChange={muda1} />
-            <Link data-test="login-btn" to="/hoje"><Entrar onClick={login} disabled={loading} datatest="login-btn">Entrar</Entrar></Link>
+            <Link data-test="login-btn" to="/hoje"><Entrar onClick={login} disabled={loading} datatest="login-btn">{loading && (
+                <TailSpin color="#FFFFFF" />
+            ) || (
+                'Entrar'
+            )}</Entrar></Link>
             <Link data-test="signup-link" to="/cadastro"><Cadastro>Não tem uma conta? Cadastre-se!</Cadastro></Link>
         </PageContainer>
     )
