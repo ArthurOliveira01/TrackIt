@@ -67,7 +67,7 @@ export default function Habitos({unidade}){
         <Exists data-test="habit-container">
             <HabitName onClick={() => console.log(token)} data-test="habit-name">{unidade.name}</HabitName>
             <Semana>
-                {dias.map((index, number) => {
+                {dias?.map((index, number) => {
                     let color;
                     let font;
                     if(unidade.days.includes(number)){
