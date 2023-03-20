@@ -136,6 +136,7 @@ export default function TodayPage(){
         listar.then(promise => {
             setToday(promise.data)
         })
+        console.log(today)
     })
 
     return(
@@ -145,26 +146,20 @@ export default function TodayPage(){
             <Day data-test="today">Segunda, 17/05</Day>
             <Specification>50% dos hábitos concluídos</Specification>
             <HabitsContainer>
-                <Habits>
-                    <Left>
-                        <HabitName>Ir à academia</HabitName>
-                        <Streak>Sequência atual: <CheckStreak>4 dias</CheckStreak></Streak>
-                        <Record>Seu recorde: <CheckStreak>4 dias</CheckStreak></Record>
-                    </Left>
-                    <Right>
-                        <Check><Mark size={35} /></Check>
-                    </Right>
-                </Habits>
-                <Habits>
-                    <Left>
-                        <HabitName>Programar por 2 horas</HabitName>
-                        <Streak>Sequência atual: 3 dias</Streak>
-                        <Record>Seu recorde: 10 dias</Record>
-                    </Left>
-                    <Right>
-                        <Check1><Mark size={35} /></Check1>
-                    </Right>
-                </Habits>
+                {today.map((cada) => {
+                    return(
+                    <Habits data-test="today-habit-container">
+                        <Left>
+                            <HabitName data-test="today-habit-name">{cada.name}</HabitName>
+                                <Streak data-test="today-habit-sequence">Sequência atual: <CheckStreak>{cada.currentSequence}</CheckStreak></Streak>
+                                <Record data-test="today-habit-record">Seu recorde: <CheckStreak>{cada.highestSequence}</CheckStreak></Record>
+                        </Left>
+                        <Right>
+                            <Check><Mark size={35} /></Check>
+                        </Right>
+                    </Habits>
+                    )
+                })}
             </HabitsContainer>
             <Footer />
         </Container>
