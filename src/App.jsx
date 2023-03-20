@@ -15,11 +15,13 @@ export default function App(){
   const [img, setImg] = useState("");
   const [nome, setNome] = useState("");
   const [token, setToken] = useState("");
-
+  const [today, setToday] = useState([]);
+  const [selec, setSelec] = useState([]);
+  const [porcentagem, setPorcentagem] = useState(0);
  
   return(
     <>
-      <Context.Provider value={{img, setImg, token, setToken}}>
+      <Context.Provider value={{img, setImg, token, setToken, today, setToday, selec, setSelec, porcentagem, setPorcentagem}}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LoginPage

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import Context from "./Context";
+import { useContext } from "react";
 
 
 const Bottom = styled.div`
@@ -44,7 +46,7 @@ const StyledLinkToday = styled(Link)`
 export default function Footer(){
 
     // <Link to="/hoje"><Circle>Hoje</Circle></Link>
-
+    const {porcentagem} = useContext(Context);
     return(
         <Bottom data-test="menu">
             <StyledLink1 data-test="habit-link" to="/habitos">Hábitos</StyledLink1>
@@ -54,7 +56,7 @@ export default function Footer(){
             textColor: "#fff",
             pathColor: "#fff",
             trailColor: "transparent"})} 
-            value={50} 
+            value={porcentagem} 
             text={'Hoje'}>
             </CircularProgressbarWithChildren></StyledLinkToday>
             <StyledLink2 data-test="history-link" to="/historico">Histórico</StyledLink2>

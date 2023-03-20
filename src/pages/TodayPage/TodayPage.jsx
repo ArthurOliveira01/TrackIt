@@ -124,15 +124,14 @@ const Mark = styled(IoMdCheckmark)`
 `;
 
 export default function TodayPage(){
-    const {token} = useContext(Context);
-    const [today, setToday] = useState([]);
-    const [selec, setSelec] = useState([]);
+    const {token, today, setToday, selec, setSelec, porcentagem, setPorcentagem} = useContext(Context);
     const week = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
     const dataAtual = new Date();
     const weekDay = dataAtual.getDay();
     const numberMonth = dataAtual.getDate();
     const Month = dataAtual.getMonth();
-
+    let counter = 1;
+    setPorcentagem(0);
      useEffect(() =>{
         const listar = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", {
             headers: {Authorization: `Bearer ${token}`}
@@ -141,8 +140,9 @@ export default function TodayPage(){
         listar.then(promise => {
             setToday(promise.data)
         })
-        console.log(today)
-        console.log(Month)
+        console.log(`selec: ${selec.length}`);
+        console.log(`today: ${selec.length/today.length}`);
+        setPorcentagem((selec.length/today.length) * 100)
     })
 
     function select(number){
@@ -151,15 +151,39 @@ export default function TodayPage(){
             aux.push(number);
             setSelec(aux);
         } else{
-
+            const index = selec.indexOf(number);
+            const aux = [...selec];
+            aux.splice(index, 1);
+            console.log('teste');
+            console.log(aux);
+            setSelec(aux);
         }
     }
 
-    function enviar(id){
-        select(id);
-        const post = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`,
-            {headers: {Authorization: `Bearer ${token}`}
-        });
+    function enviar(id, done){
+        const final = {}
+        if(done === false){
+            console.log(`${id} é falso`)
+            const post = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, final,
+            {headers: {Authorization: `Bearer ${token}`}});
+            post.then(promise    =>{
+            console.log(promise);
+            select(id);
+        }  
+        )
+        post.catch()
+        } else{
+            const post = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`, final,
+            {headers: {Authorization: `Bearer ${token}`}});
+            post.then(promise =>{
+            select(id);
+            console.log(promise);
+            console.log(`today: ${selec}`);
+            console.log(`today: ${today}`);
+        }  
+        )
+        post.catch()
+        }
     }
 
     return(
@@ -167,14 +191,21 @@ export default function TodayPage(){
             <Header
             />
             <Day data-test="today">{week[weekDay]}, {numberMonth}/{Month + 1}</Day>
-            <Specification>50% dos hábitos concluídos</Specification>
+            <Specification>{porcentagem}% dos hábitos concluídos</Specification>
             <HabitsContainer>
                 {today.map((cada) => {
                     let color1;
-                    if(selec.includes(cada.id)){
+                    if(selec.includes(cada.id) || cada.done === true){
+                        if(!selec.includes(cada.id)){
+                            let aux = selec ;
+                            aux.push(cada.id);
+                            setSelec(aux);
+                        }
+                        counter ++;
                         color1 = "#8FC549";
                     } else{
                         color1 = "#E7E7E7";
+                        counter --;
                     }
                     return(
                     <Habits data-test="today-habit-container">
@@ -184,13 +215,15 @@ export default function TodayPage(){
                                 <Record data-test="today-habit-record">Seu recorde: <CheckStreak>{cada.highestSequence}</CheckStreak></Record>
                         </Left>
                         <Right>
-                            <Check1 data-test="today-habit-check-btn"  color={color1} onClick={() => enviar(cada.id)}><Mark size={35} /></Check1>
+                            <Check1 data-test="today-habit-check-btn" onClick={() => enviar(cada.id, cada.done)}  color1={color1} ><Mark size={35} /></Check1>
                         </Right>
                     </Habits>
                     )
                 })}
             </HabitsContainer>
-            <Footer />
+            <Footer
+            porcentagem = {porcentagem}
+            />
         </Container>
     )
 }

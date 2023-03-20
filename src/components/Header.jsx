@@ -1,5 +1,6 @@
-import { useContext } from "react";
 import styled from "styled-components";
+import { useContext } from "react";
+import { useState } from "react";
 import Context from "./Context";
 
 const Topo = styled.div `
@@ -34,13 +35,11 @@ const Profile = styled.img`
 `;
 
 
-export default function Header(){
-    const link = "https://mir-s3-cdn-cf.behance.net/projects/404/fa1a1e115357173.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png";
+export default function Header(){   
     const {img} = useContext(Context);
-
     return(
         <Topo data-test="header">
-            <Name>TrackIt</Name>
+            <Name>Teste</Name>
             <Profile src={img} />
         </Topo>
     )
