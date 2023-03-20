@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Context from "./Context";
 import { useContext } from "react";
+import trash from "../img/trash.svg"
 
 
 const Exists = styled.div`
@@ -40,6 +41,15 @@ const Botao = styled.button`
     color: ${props => props.font};
 `;
 
+const Trash = styled.img`
+    width: 13px;
+    height: 15px;
+    margin-right: 10px;
+    margin-left: auto;
+    margin-top: -40px; 
+    margin-bottom: auto;
+`
+
 export default function Habitos({unidade}){
     const {token} = useContext(Context);
     const dias = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -62,6 +72,7 @@ export default function Habitos({unidade}){
                     )
                 })}
             </Semana>
+            <Trash data-test="habit-delete-btn" src={trash} />
         </Exists>
     )
 }
