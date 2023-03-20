@@ -1,10 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { ThreeDots } from 'react-loader-spinner';
-
-
+import Context from "../../components/Context";
 
 const PageContainer = styled.div`
     display: flex;
@@ -79,9 +78,10 @@ const Cadastro = styled.p`
     text-decoration: underline;
 `;
 
-export default function LoginPage({email, setEmail, senha, setSenha}){
+export default function LoginPage({email, setEmail, senha, setSenha, token, setToken}){
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const {img, setImg} = useContext(Context);
 
 
 
@@ -113,10 +113,16 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
         }
         const send = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {email: email, password: senha});
         console.log(send);
-        send.then(() => navigate("/hoje"));
+        
+        send.then(promise => {
+            setImg(promise.data.image);
+            setToken(promise.data.token);
+            console.log(img);
+            navigate("/hoje");
+        });
         send.catch(error);
     }
-
+    //() => navigate("/hoje"), promise => setImg(promise.image), () => console.log(img)
     function error(){
         alert('Não foi encontrado um usuário com esses dados');
         setLoading(false);
