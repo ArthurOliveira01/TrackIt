@@ -113,7 +113,7 @@ const Check = styled.button`
 const Check1 = styled.button`
     width: 69px;
     height: 69px;
-    background-color: #E7E7E7;
+    background-color: ${props => props.color1};
     border: 0px;
     border-radius: 5px;
 `;
@@ -126,6 +126,7 @@ const Mark = styled(IoMdCheckmark)`
 export default function TodayPage(){
     const {token} = useContext(Context);
     const [today, setToday] = useState([]);
+    const [selec, setSelec] = useState([]);
     const week = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
     const dataAtual = new Date();
     const weekDay = dataAtual.getDay();
@@ -144,6 +145,23 @@ export default function TodayPage(){
         console.log(Month)
     })
 
+    function select(number){
+        if(!selec.includes(number)){
+            let aux = selec ;
+            aux.push(number);
+            setSelec(aux);
+        } else{
+
+        }
+    }
+
+    function enviar(id){
+        select(id);
+        const post = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`,
+            {headers: {Authorization: `Bearer ${token}`}
+        });
+    }
+
     return(
         <Container>
             <Header
@@ -152,6 +170,12 @@ export default function TodayPage(){
             <Specification>50% dos hábitos concluídos</Specification>
             <HabitsContainer>
                 {today.map((cada) => {
+                    let color1;
+                    if(selec.includes(cada.id)){
+                        color1 = "#8FC549";
+                    } else{
+                        color1 = "#E7E7E7";
+                    }
                     return(
                     <Habits data-test="today-habit-container">
                         <Left>
@@ -160,7 +184,7 @@ export default function TodayPage(){
                                 <Record data-test="today-habit-record">Seu recorde: <CheckStreak>{cada.highestSequence}</CheckStreak></Record>
                         </Left>
                         <Right>
-                            <Check><Mark size={35} /></Check>
+                            <Check1 data-test="today-habit-check-btn"  color={color1} onClick={() => enviar(cada.id)}><Mark size={35} /></Check1>
                         </Right>
                     </Habits>
                     )
