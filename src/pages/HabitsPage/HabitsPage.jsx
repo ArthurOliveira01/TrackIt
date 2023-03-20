@@ -177,9 +177,11 @@ export default function HabitsPage(){
                 name: titulo,
                 days: selected
             }
-            const post = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
+            console.log(titulo);
+            console.log(selected);
+            const post = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", 
             final,
-            headers: {Authorization: `Bearer ${token}`}
+            {headers: {Authorization: `Bearer ${token}`}
         });
             post.then(promise => {
                 setTitulo('');
