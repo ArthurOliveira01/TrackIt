@@ -126,7 +126,11 @@ const Mark = styled(IoMdCheckmark)`
 export default function TodayPage(){
     const {token} = useContext(Context);
     const [today, setToday] = useState([]);
-    const diasDaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+    const week = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+    const dataAtual = new Date();
+    const weekDay = dataAtual.getDay();
+    const numberMonth = dataAtual.getDate();
+    const Month = dataAtual.getMonth();
 
      useEffect(() =>{
         const listar = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", {
@@ -137,13 +141,14 @@ export default function TodayPage(){
             setToday(promise.data)
         })
         console.log(today)
+        console.log(Month)
     })
 
     return(
         <Container>
             <Header
             />
-            <Day data-test="today">Segunda, 17/05</Day>
+            <Day data-test="today">{week[weekDay]}, {numberMonth}/{Month + 1}</Day>
             <Specification>50% dos hábitos concluídos</Specification>
             <HabitsContainer>
                 {today.map((cada) => {
