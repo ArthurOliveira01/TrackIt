@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Context from "./Context";
 import { useContext } from "react";
 import trash from "../img/trash.svg"
+import axios from "axios";
 
 
 const Exists = styled.div`
@@ -53,6 +54,15 @@ const Trash = styled.img`
 export default function Habitos({unidade}){
     const {token} = useContext(Context);
     const dias = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+
+    function deleteHabit(){
+       if(window.confirm('Você está prestes a excluir esse hábito, deseja continuar com essa ação')){
+        axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${unidade.id}`, {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+       }
+    }
+
     return(
         <Exists data-test="habit-container">
             <HabitName onClick={() => console.log(token)} data-test="habit-name">{unidade.name}</HabitName>
@@ -72,7 +82,7 @@ export default function Habitos({unidade}){
                     )
                 })}
             </Semana>
-            <Trash data-test="habit-delete-btn" src={trash} />
+            <Trash onClick={deleteHabit} data-test="habit-delete-btn" src={trash} />
         </Exists>
     )
 }
