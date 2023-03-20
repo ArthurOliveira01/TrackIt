@@ -3,6 +3,10 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { IoMdCheckmark } from 'react-icons/io';
 import { Icon } from 'react-icons';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Context from "../../components/Context";
+import { useContext } from "react";
 
 const Container = styled.div`
     width: 100%;
@@ -120,13 +124,25 @@ const Mark = styled(IoMdCheckmark)`
 `;
 
 export default function TodayPage(){
+    const {token} = useContext(Context);
+    const [today, setToday] = useState([]);
+    const diasDaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
 
+     useEffect(() =>{
+        const listar = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", {
+            headers: {Authorization: `Bearer ${token}`}
+        });
+
+        listar.then(promise => {
+            setToday(promise.data)
+        })
+    })
 
     return(
         <Container>
             <Header
             />
-            <Day>Segunda, 17/05</Day>
+            <Day data-test="today">Segunda, 17/05</Day>
             <Specification>50% dos hábitos concluídos</Specification>
             <HabitsContainer>
                 <Habits>

@@ -226,7 +226,7 @@ export default function HabitsPage(){
                     </Semana>
                     <Baixo>
                         <Cancelar data-test="habit-create-cancel-btn" onClick={() => setNovo(false)}>Cancelar</Cancelar>
-                        <Salvar data-test="habit-save-cancel-btn" onClick={send}>Salvar</Salvar>
+                        <Salvar data-test="habit-create-save-btn" onClick={send}>Salvar</Salvar>
                     </Baixo>
                 </Creating>)}
                 {lista.length === 0 && (
