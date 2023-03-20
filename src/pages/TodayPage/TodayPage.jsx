@@ -119,11 +119,12 @@ const Mark = styled(IoMdCheckmark)`
     font-weight: 700;
 `;
 
-export default function TodayPage(img){
+export default function TodayPage(){
+
+
     return(
         <Container>
             <Header
-            img = {img}
             />
             <Day>Segunda, 17/05</Day>
             <Specification>50% dos hábitos concluídos</Specification>

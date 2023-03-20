@@ -44,12 +44,10 @@ const Soon = styled.p`
 `;
 
 
-export default function HistoryPage(img){
+export default function HistoryPage(){
     return(
         <Container>
-            <Header
-            img = {img}
-            />
+            <Header/>
             <Row> 
                 <History>Histórico</History>
             </Row>

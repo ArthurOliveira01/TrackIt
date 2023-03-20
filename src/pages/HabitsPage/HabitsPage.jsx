@@ -63,12 +63,10 @@ const Container = styled.div`
 `;
 
 
-export default function HabitsPage(img){
+export default function HabitsPage(){
     return(
         <Container>
-            <Header
-            img = {img}
-            />
+            <Header/>
             <Row>
                 <Mine>Meus hábitos</Mine>
                 <Create>+</Create>
