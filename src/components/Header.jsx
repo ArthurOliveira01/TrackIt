@@ -37,9 +37,10 @@ const Profile = styled.img`
 export default function Header(){
     const link = "https://mir-s3-cdn-cf.behance.net/projects/404/fa1a1e115357173.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png";
     const {img} = useContext(Context);
+
     return(
         <Topo data-test="header">
-            <Name>Teste</Name>
+            <Name>TrackIt</Name>
             <Profile src={img} />
         </Topo>
     )

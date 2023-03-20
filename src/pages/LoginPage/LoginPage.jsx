@@ -78,7 +78,7 @@ const Cadastro = styled.p`
     text-decoration: underline;
 `;
 
-export default function LoginPage({email, setEmail, senha, setSenha}){
+export default function LoginPage({email, setEmail, senha, setSenha, token, setToken}){
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const {img, setImg} = useContext(Context);
@@ -116,6 +116,7 @@ export default function LoginPage({email, setEmail, senha, setSenha}){
         
         send.then(promise => {
             setImg(promise.data.image);
+            setToken(promise.data.token);
             console.log(img);
             navigate("/hoje");
         });

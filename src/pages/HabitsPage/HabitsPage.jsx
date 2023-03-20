@@ -1,6 +1,8 @@
+import { useEffect, useContext } from "react";
 import styled from "styled-components";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import Context from "../../components/Context";
 
 
 const Row = styled.div`
@@ -64,12 +66,18 @@ const Container = styled.div`
 
 
 export default function HabitsPage(){
+    const {token} = useContext(Context);
+
+    useEffect(() =>{
+
+    })
+
     return(
         <Container>
             <Header/>
             <Row>
                 <Mine>Meus hábitos</Mine>
-                <Create>+</Create>
+                <Create data-test="habit-create-btn">+</Create>
             </Row>
             <HabitsContainer>
                 <None>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</None>

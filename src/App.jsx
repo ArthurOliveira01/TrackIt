@@ -14,11 +14,12 @@ export default function App(){
   const [senha, setSenha] = useState("");
   const [img, setImg] = useState("");
   const [nome, setNome] = useState("");
+  const [token, setToken] = useState("");
 
  
   return(
     <>
-      <Context.Provider value={{img, setImg}}>
+      <Context.Provider value={{img, setImg, token, setToken}}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LoginPage
@@ -28,6 +29,8 @@ export default function App(){
             setSenha = {setSenha}
             img = {img}
             setImg = {setImg}
+            token = {token}
+            setToken = {setToken}
             />} />
             <Route path="/cadastro" element={<SetUpPage
             setEmail={setEmail}
